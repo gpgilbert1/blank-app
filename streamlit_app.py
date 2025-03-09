@@ -9,7 +9,7 @@ def get_metal_price(ticker):
     metal = yf.Ticker(ticker)
     return metal.history(period='1d')['Close'].iloc[-1] / 28
 
-silver_price = get_metal_price('XAGUSD=X')
+silver_price = get_metal_price('SI=F')
 gold_price = get_metal_price('GC=F')
 
 # Fetch historical data

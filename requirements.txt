@@ -1,1 +1,5 @@
 streamlit
+yfinance==0.1.70
+pandas
+matplotlib.pyplot
+io

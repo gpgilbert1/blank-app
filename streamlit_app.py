@@ -18,7 +18,7 @@ def get_metal_data(ticker):
     data.index = pd.to_datetime(data.index)
     return data
 
-silver_data = get_metal_data('SI=F')
+silver_data = get_metal_data('XAGUSD=X')
 gold_data = get_metal_data('GC=F')
 
 # Streamlit UI

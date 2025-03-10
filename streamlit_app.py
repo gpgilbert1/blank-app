@@ -24,36 +24,38 @@ gold_data = get_metal_data('GC=F')
 # Streamlit UI
 st.title("Gold & Silver Price Dashboard")
 st.write("Current prices per gram:")
-st.metric(label="Silver Price", value=f"${silver_price:.2f}")
-st.metric(label="Gold Price", value=f"${gold_price:.2f}")
 
-# User Input
-metal_choice = st.selectbox("Select Metal", ["Silver", "Gold"])
-weight = st.number_input("Enter weight in grams", min_value=0.0, value=0.0, step=0.1)
+# Layout with columns
+col1, col2 = st.columns([1, 2])  # Adjust ratio if needed
 
-# Calculate value
-if metal_choice.lower() == "silver":
-    jewelry_value = silver_price * weight
-else:
-    jewelry_value = gold_price * weight
+with col1:
+    st.metric(label="Silver Price", value=f"${silver_price:.2f}")
+    st.metric(label="Gold Price", value=f"${gold_price:.2f}")
 
-st.subheader(f"Jewelry Value: ${jewelry_value:.2f}")
+    # User Input
+    metal_choice = st.selectbox("Select Metal", ["Silver", "Gold"])
+    weight = st.number_input("Enter weight in grams", min_value=0.0, value=0.0, step=0.1)
 
-# Plot price charts
-def plot_line_chart(data, title):
-    plt.figure(figsize=(10, 5))
-    plt.plot(data.index, data['Close'], label='Close Price')
-    plt.title(title)
-    plt.xlabel('Date')
-    plt.ylabel('Price (USD)')
-    plt.grid(True)
-    plt.legend()
+    # Calculate value
+    jewelry_value = silver_price * weight if metal_choice.lower() == "silver" else gold_price * weight
+    st.subheader(f"Jewelry Value: ${jewelry_value:.2f}")
 
-    buf = BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)  # Reset buffer pointer
-    st.image(buf)
+with col2:
+    st.subheader("Price Charts")
 
-st.subheader("Price Charts")
-plot_line_chart(silver_data, "Silver Price Chart")
-plot_line_chart(gold_data, "Gold Price Chart")
+    def plot_line_chart(data, title):
+        plt.figure(figsize=(8, 4))
+        plt.plot(data.index, data['Close'], label='Close Price')
+        plt.title(title)
+        plt.xlabel('Date')
+        plt.ylabel('Price (USD)')
+        plt.grid(True)
+        plt.legend()
+
+        buf = BytesIO()
+        plt.savefig(buf, format='png')
+        buf.seek(0)  # Reset buffer pointer
+        st.image(buf)
+
+    plot_line_chart(silver_data, "Silver Price Chart")
+    plot_line_chart(gold_data, "Gold Price Chart")

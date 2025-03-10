@@ -22,7 +22,7 @@ silver_data = get_metal_data('SI=F')
 gold_data = get_metal_data('GC=F')
 
 # Streamlit UI
-st.image("spectra_gems.jpg", caption="Spectra Gems", use_container_width=True)
+st.image("C:\Code Files\Jewelry\spectra_gems.jpg", caption="Spectra Gems", use_container_width=True)
 
 st.title("Gold & Silver Price Dashboard")
 st.write("Current prices per gram:")

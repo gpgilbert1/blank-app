@@ -21,14 +21,19 @@ def get_metal_data(ticker):
 silver_data = get_metal_data('SI=F')
 gold_data = get_metal_data('GC=F')
 
-# Streamlit UI
-st.image("spectra_gems.jpg", caption="Spectra Gems", use_container_width=True)
+# 🎨 Layout: Logo + Title
+col1, col2 = st.columns([1, 4])  # Adjust width ratio
 
-st.title("Gold & Silver Price Dashboard")
+with col1:
+    st.image("spectra_gems.jpg", width=100)  # Logo
+
+with col2:
+    st.title("Gold & Silver Price Dashboard")
+
 st.write("Current prices per gram:")
 
-# Layout with columns
-col1, col2 = st.columns([1, 2])  # Adjust ratio if needed
+# 📊 Layout: Price Metrics & Inputs
+col1, col2 = st.columns([1, 2])  
 
 with col1:
     st.metric(label="Silver Price", value=f"${silver_price:.2f}")
@@ -42,12 +47,13 @@ with col1:
     jewelry_value = silver_price * weight if metal_choice.lower() == "silver" else gold_price * weight
     st.subheader(f"Jewelry Value: ${jewelry_value:.2f}")
 
+# 📈 Charts Section
 with col2:
     st.subheader("Price Charts")
 
     def plot_line_chart(data, title):
         plt.figure(figsize=(8, 4))
-        plt.plot(data.index, data['Close'], label='Close Price')
+        plt.plot(data.index, data['Close'], label='Close Price', color="gold" if "Gold" in title else "silver")
         plt.title(title)
         plt.xlabel('Date')
         plt.ylabel('Price (USD)')

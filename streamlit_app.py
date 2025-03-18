@@ -28,7 +28,7 @@ with col1:
     st.image("spectra_gems.jpg", width=200)  # Logo
 
 with col2:
-    st.title("Gold & Silver Price Dashboard")
+    st.title("Gold & Silver Prices")
 
 st.write("Current prices per gram:")
 
@@ -56,7 +56,7 @@ with col2:
         plt.plot(data.index, data['Close'], label='Close Price', color="gold" if "Gold" in title else "silver")
         plt.title(title)
         plt.xlabel('Date')
-        plt.ylabel('Price (USD)')
+        plt.ylabel('Price / Ounce (USD)')
         plt.grid(True)
         plt.legend()
 
@@ -67,3 +67,4 @@ with col2:
 
     plot_line_chart(silver_data, "Silver Price Chart")
     plot_line_chart(gold_data, "Gold Price Chart")
+    st.subheader("Powered by Gilbert Systems 📊")

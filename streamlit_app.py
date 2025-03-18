@@ -25,7 +25,7 @@ gold_data = get_metal_data('GC=F')
 col1, col2 = st.columns([1, 4])  # Adjust width ratio
 
 with col1:
-    st.image("spectra_gems.jpg", width=200)  # Logo
+    st.image("logo.jpg", width=200)  # Logo
 
 with col2:
     st.title("Gold & Silver Prices")

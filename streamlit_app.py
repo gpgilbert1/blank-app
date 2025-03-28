@@ -36,12 +36,12 @@ col1, col2 = st.columns([1, 4])  # Adjust width ratio
 with col1:
     st.image("spectra_logo.jpg", width=200)  # Logo
 
-with col2:
-    st.title("Gold & Silver Prices")
+email = st.text_input("Enter Email Address", "")
 
 sku = st.text_input("Enter SKU Number", "")
 
-email = st.text_input("Enter Email Address", "")
+with col2:
+    st.title("Gold & Silver Prices")
 
 st.write("Current prices per gram:")
 
@@ -136,3 +136,5 @@ with col2:
 
     plot_line_chart(silver_data, "Silver Price Chart")
     plot_line_chart(gold_data, "Gold Price Chart")
+
+sku = st.text_input("Description", "")
